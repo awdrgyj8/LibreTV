@@ -570,9 +570,9 @@ async function search() {
             return;
         }
     }
-    const query = document.getElementById('searchInput').value.trim();
+    const input = document.getElementById('searchInput').value.trim();
     
-    if (!query) {
+    if (!input) {
         showToast('请输入搜索内容', 'info');
         return;
     }
@@ -583,7 +583,9 @@ async function search() {
     }
     
     showLoading();
-    
+    // 將繁體轉為簡體
+    const query = tw2cn(input);
+
     try {
         // 保存搜索历史
         saveSearchHistory(query);
